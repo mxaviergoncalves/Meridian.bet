@@ -1,10 +1,1061 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Meridian.bet</title>
-</head>
-<body>
-  <h1>Bem-vindo ao Meridian.bet</h1>
-  <p>Este é o início do seu site!</p>
-</body>
-</html>
+<title>Catálogo Esportivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Paleta da marca Meridianbet: vermelho "Tall Poppy" (#BD2426) como cor
+       primária (botões, links ativos) + cinza azulado escuro como cor
+       secundária (tags, selos), sobre branco e cinza-escuro neutro. */
+    --bg:#F7F4F4;
+    --surface:#FFFFFF;
+    --surface-2:#F0E9EA;
+    --ink:#241F20;
+    --ink-soft:#6E5D5F;
+    --ink-faint:#9A8889;
+    --accent:#BD2426;
+    --accent-ink:#FFFFFF;
+    --accent-2:#3C4A59;
+    --accent-2-ink:#FFFFFF;
+    --line:#E6DCDD;
+    --live:#BD2426;
+    --shadow: 0 1px 2px rgba(36,31,32,.06), 0 8px 24px -12px rgba(36,31,32,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#150F10;
+      --surface:#1D1516;
+      --surface-2:#251C1D;
+      --ink:#F3ECEC;
+      --ink-soft:#BFAEAF;
+      --ink-faint:#83706F;
+      --accent:#E5484B;
+      --accent-ink:#FFFFFF;
+      --accent-2:#94A3B2;
+      --accent-2-ink:#12181D;
+      --line:#3A2B2C;
+      --live:#E5484B;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 28px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#150F10;
+    --surface:#1D1516;
+    --surface-2:#251C1D;
+    --ink:#F3ECEC;
+    --ink-soft:#BFAEAF;
+    --ink-faint:#83706F;
+    --accent:#E5484B;
+    --accent-ink:#FFFFFF;
+    --accent-2:#94A3B2;
+    --accent-2-ink:#12181D;
+    --line:#3A2B2C;
+    --live:#E5484B;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 28px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Public Sans", -apple-system, "Segoe UI", sans-serif;
+    padding-inline: clamp(16px, 4vw, 40px);
+    padding-block: clamp(20px, 4vw, 36px);
+  }
+  a{color:inherit;}
+  .page{max-width:1180px; margin:0 auto;}
+
+  .eyebrow{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.72rem;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+  }
+
+  /* Masthead */
+  .masthead{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:14px 24px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:22px;
+  }
+  .brand{display:flex; align-items:center; gap:14px;}
+  .brand-logo{
+    display:block;
+    height:42px;
+    width:auto;
+    border-radius:8px;
+    box-shadow:var(--shadow);
+    flex-shrink:0;
+  }
+  .masthead-meta{
+    display:flex; flex-direction:column; align-items:flex-end; gap:3px;
+    font-size:.78rem; color:var(--ink-faint);
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+  }
+  .masthead-meta a{color:var(--ink-soft); text-decoration-color:var(--line);}
+
+
+  /* Layout: sidenav + content */
+  .layout{
+    display:grid;
+    grid-template-columns:200px minmax(0,1fr);
+    gap:32px;
+    align-items:start;
+  }
+  .sidenav{
+    position:sticky;
+    top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    font-size:.88rem;
+  }
+  .sidenav-label{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.7rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:8px;
+  }
+  .sidenav a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding:7px 10px;
+    border-radius:8px;
+    border-left:2px solid transparent;
+  }
+  .sidenav a:hover{color:var(--ink); background:var(--surface-2);}
+  .sidenav a.active{
+    color:var(--ink);
+    font-weight:600;
+    background:var(--surface-2);
+    border-left-color:var(--accent);
+  }
+
+  .content{display:flex; flex-direction:column; gap:44px; min-width:0;}
+
+  section{scroll-margin-top:18px;}
+  .section-head{margin-bottom:16px;}
+  .section-title{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:800;
+    font-size:1.7rem;
+    margin:4px 0 6px;
+    text-wrap:balance;
+  }
+  .section-desc{
+    color:var(--ink-soft);
+    font-size:.95rem;
+    max-width:62ch;
+    line-height:1.5;
+    margin:0;
+  }
+
+  /* Sport tiles with volume bar */
+  .tile-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(168px,1fr));
+    gap:10px;
+  }
+  .tile{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:13px 14px 12px;
+    display:flex; flex-direction:column; gap:9px;
+    box-shadow:var(--shadow);
+  }
+  .tile-top{display:flex; align-items:baseline; justify-content:space-between; gap:8px;}
+  .tile-name{font-weight:600; font-size:.92rem; line-height:1.25;}
+  .tile-count{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size:.82rem;
+    color:var(--ink-soft);
+    flex-shrink:0;
+  }
+  .tile-bar-track{height:5px; border-radius:3px; background:var(--surface-2); overflow:hidden;}
+  .tile-bar-fill{height:100%; border-radius:3px; background:var(--accent);}
+
+  /* Chip list (competitions, account/support) */
+  .chip-list{display:flex; flex-wrap:wrap; gap:9px;}
+  .chip{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 15px;
+    font-size:.86rem;
+    font-weight:500;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+  }
+  .chip .tag{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.68rem;
+    color:var(--accent-2);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+
+  /* Feature / support cards */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:14px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:7px;
+  }
+  .card-title{font-weight:700; font-size:1rem;}
+  .card-body{color:var(--ink-soft); font-size:.88rem; line-height:1.5; margin:0;}
+  .card-flag{
+    align-self:flex-start;
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.66rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:2px 8px;
+    border-radius:5px;
+    background:var(--surface-2);
+    color:var(--ink-faint);
+  }
+  .card-flag.live{background:color-mix(in srgb, var(--live) 16%, transparent); color:var(--live);}
+
+  /* Responsible gaming callout */
+  .callout{
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 22px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .callout-row{display:flex; flex-wrap:wrap; gap:10px 28px;}
+  .callout-item{display:flex; flex-direction:column; gap:2px; min-width:160px;}
+  .callout-item strong{font-size:.92rem;}
+  .callout-item span{font-size:.84rem; color:var(--ink-soft);}
+
+  footer{
+    margin-top:48px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:8px;
+    font-size:.78rem;
+    color:var(--ink-faint);
+  }
+  footer a{color:var(--ink-soft);}
+
+  @media (max-width: 760px){
+    .layout{grid-template-columns:1fr;}
+    .sidenav{
+      position:static;
+      flex-direction:row;
+      overflow-x:auto;
+      gap:6px;
+      padding-bottom:6px;
+      -webkit-overflow-scrolling:touch;
+    }
+    .sidenav-label{display:none;}
+    .sidenav a{white-space:nowrap; border-left:none; border-bottom:2px solid transparent;}
+    .sidenav a.active{border-left-color:transparent; border-bottom-color:var(--accent);}
+    .masthead{align-items:flex-start;}
+    .masthead-meta{align-items:flex-start;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{scroll-behavior:auto !important;}
+  }
+
+  /* Fonte de dados (API ao vivo x instantâneo estático) */
+  .source-toggle{
+    display:flex; align-items:center; gap:6px;
+    background:none; border:none; padding:0;
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.72rem; color:var(--ink-faint);
+    cursor:pointer; text-decoration:underline; text-underline-offset:2px;
+  }
+  .source-dot{width:7px; height:7px; border-radius:50%; background:var(--ink-faint); flex-shrink:0;}
+  .source-dot.live{background:var(--accent);}
+  .source-dot.error{background:var(--live);}
+  .source-panel{
+    display:none;
+    margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
+    flex-direction:column; gap:10px;
+  }
+  .source-panel.open{display:flex;}
+  .source-panel-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+  .source-panel input{
+    flex:1; min-width:220px;
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.8rem;
+    padding:8px 10px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink);
+  }
+  .source-panel button{
+    font-family:"Public Sans", sans-serif;
+    font-size:.82rem;
+    padding:8px 14px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .source-panel button.primary{background:var(--accent); color:var(--accent-ink); border-color:var(--accent);}
+  .source-note{font-size:.8rem; color:var(--ink-soft); max-width:60ch; line-height:1.5; margin:0;}
+  .empty-hint{color:var(--ink-faint); font-size:.9rem;}
+
+  /* Busca */
+  .search-bar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:11px 14px;
+    margin-bottom:24px;
+    box-shadow:var(--shadow);
+  }
+  .search-bar svg{ flex-shrink:0; width:18px; height:18px; color:var(--ink-faint); }
+  .search-bar input{
+    flex:1;
+    min-width:0;
+    border:none;
+    outline:none;
+    background:none;
+    font-family:"Public Sans", sans-serif;
+    font-size:.95rem;
+    color:var(--ink);
+  }
+  .search-bar input::placeholder{ color:var(--ink-faint); }
+  .search-bar input::-webkit-search-cancel-button{ display:none; }
+  .search-clear{
+    flex-shrink:0;
+    border:none;
+    background:var(--surface-2);
+    color:var(--ink-soft);
+    font-family:"Public Sans", sans-serif;
+    font-size:.78rem;
+    padding:6px 11px;
+    border-radius:7px;
+    cursor:pointer;
+  }
+  .search-clear:hover{ color:var(--ink); }
+  .search-clear[hidden]{ display:none; }
+  .search-count{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.72rem;
+    color:var(--ink-faint);
+    margin:-14px 0 20px 2px;
+  }
+  mark{
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+    color:inherit;
+    border-radius:3px;
+    padding:0 1px;
+  }
+
+  /* Fonte de um tópico específico (link para a página oficial de origem) */
+  .section-source{
+    display:inline-block;
+    margin-top:6px;
+    font-size:.78rem;
+    color:var(--ink-faint);
+  }
+  .section-source a{color:var(--ink-soft); text-decoration-color:var(--line);}
+
+  /* FAQ em acordeão: pergunta sempre visível, resposta aparece ao clicar */
+  .faq-list{display:flex; flex-direction:column; gap:10px;}
+  .faq-item{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .faq-question{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:14px 16px;
+    background:none;
+    border:none;
+    font-family:"Public Sans", sans-serif;
+    font-weight:600;
+    font-size:.94rem;
+    color:var(--ink);
+    text-align:left;
+    cursor:pointer;
+  }
+  .faq-question-text{ flex:1; min-width:0; }
+  .faq-question-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-shrink:0;
+  }
+  .item-badge{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.74rem;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .item-badge-count{
+    color:var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .item-badge-tag{
+    color:var(--accent-2);
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .item-badge-live{
+    color:var(--live);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .faq-chevron{
+    flex-shrink:0;
+    width:18px; height:18px;
+    color:var(--ink-faint);
+    transition:transform .18s ease;
+  }
+  .faq-item.open .faq-chevron{ transform:rotate(180deg); }
+  .faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .22s ease;
+  }
+  .faq-answer-inner{
+    padding:0 16px 16px;
+    color:var(--ink-soft);
+    font-size:.88rem;
+    line-height:1.6;
+    max-width:68ch;
+  }
+  .faq-answer-inner strong{color:var(--ink);}
+  @media (prefers-reduced-motion: reduce){
+    .faq-answer{ transition:none; }
+    .faq-chevron{ transition:none; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="brand">
+      <img class="brand-logo" src="data:image/png;base64,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" alt="Meridianbet" />
+    </div>
+    <div class="masthead-meta">
+      <span>Fonte: <a href="https://meridianbet.bet.br/ca/esportes" target="_blank" rel="noopener">meridianbet.bet.br/ca/esportes</a></span>
+      <button class="source-toggle" id="sourceToggle" type="button">
+        <span class="source-dot" id="sourceDot"></span>
+        <span id="sourceLabel">dados estáticos · 11 set 2026</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="search-bar">
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M14 14L18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <input type="search" id="searchInput" placeholder="Buscar um assunto (ex.: saque, handicap, futebol, autoexclusão...)" autocomplete="off" />
+    <button type="button" class="search-clear" id="searchClear" hidden>Limpar</button>
+  </div>
+  <p class="search-count" id="searchCount" hidden></p>
+
+  <div class="layout">
+    <nav class="sidenav" aria-label="Tópicos da intranet" id="sidenav">
+      <span class="sidenav-label">Tópicos</span>
+    </nav>
+
+    <main class="content" id="content">
+      <p class="empty-hint">Carregando tópicos…</p>
+    </main>
+  </div>
+
+  <footer>
+    <span>MERIDIAN GAMING BRASIL SPE LTDA · CNPJ 56.195.600/0001-07 · Registro SIGAP nº 0086/2024 · autorização válida até 31/12/2029 · Av. Paulista, 2444, Salas 71-72, Bela Vista, São Paulo/SP.</span>
+    <span>Conteúdo extraído das páginas públicas da Meridianbet (Esportes, Ajuda e Termos e Condições) em 11 set 2026, para uso interno de equipes.</span>
+  </footer>
+
+  <div class="source-panel" id="sourcePanel">
+    <p class="source-note">
+      Por padrão esta página mostra o instantâneo estático coletado em 11/09/2026.
+      Para exibir dados ao vivo, aponte para o backend da intranet (API + CMS) —
+      informe a URL pública onde ele está rodando (ex.: <code>https://intranet-api.suaempresa.com</code>).
+    </p>
+    <div class="source-panel-row">
+      <input type="text" id="apiBaseInput" placeholder="https://sua-api.exemplo.com" />
+      <button class="primary" id="apiBaseSave">Usar esta API</button>
+      <button id="apiBaseClear">Voltar para dados estáticos</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ---------------------------------------------------------------------
+  // Dados estáticos de fallback: o mesmo instantâneo semeado no backend
+  // (scripts/seed.js). Sempre que a API não estiver configurada, ou não
+  // responder, a página renderiza a partir daqui — nunca fica em branco.
+  // ---------------------------------------------------------------------
+  var FALLBACK_TOPICS = [
+    { slug: "tradicionais", eyebrow: "Tópico 01", title: "Esportes Tradicionais", kind: "SPORTS",
+      description: "As dez modalidades de maior volume no catálogo. Clique em cada uma para ver as regras de liquidação e os principais mercados, conforme o Livro de Regras oficial.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/livro-de-regras", label: "Livro de Regras" },
+      items: [
+        { name: "Futebol", count: 1727, description: "Liquidação pelo Tempo Normal (90 minutos + acréscimos); prorrogação e pênaltis não contam, salvo indicação contrária. Mercados: Vencedor da Partida, Placar Exato, Artilheiro, Total de Gols, Handicap, Ambas Marcam, Escanteios e Cartões. Se a partida for abandonada e não remarcada em até 2 dias corridos, as apostas são anuladas — exceto se o abandono ocorrer após o intervalo, quando são liquidadas pelo resultado alcançado." },
+        { name: "Futebol Americano", count: 193, description: "Em caso de dúvida, a liquidação segue o resultado oficial em nfl.com (NFL) ou donbest.com (universitário); ajustes feitos após 24 horas do fim do jogo são desconsiderados. Mercados: Vencedor (Moneyline), Handicap (Spread), Total de Pontos e combinações de Pontos e Vencedor." },
+        { name: "Hóquei no Gelo", count: 114, description: "Liquidação pela pontuação após os 60 minutos (três períodos regulamentares); prorrogação e pênaltis não contam, salvo indicação contrária. Mercados: Vencedor, Dupla Chance, Total de Gols, Handicap e combinações de Pontos e Vencedor." },
+        { name: "Artes Marciais", count: 110, description: "O Livro de Regras oficial não tem uma seção específica para MMA/Artes Marciais — apenas o Boxe é detalhado separadamente. Aplicam-se as regras gerais da plataforma (liquidação pelas odds no momento da aposta, direito de recusar apostas, erros manifestos etc.)." },
+        { name: "Handebol", count: 107, description: "Liquidação pela pontuação ao final dos 60 minutos regulamentares; prorrogação e pênaltis não contam, salvo indicação contrária. Mercados: Vencedor, Handicap, Total de Gols, Dupla Chance e combinações de Pontos e Vencedor." },
+        { name: "Tênis", count: 94, description: "Em caso de adiamento, aguarda-se o resultado final, desde que a partida não seja abandonada; desistência antes ou durante a partida anula todas as apostas. O número total de sets previsto precisa ser completado. Mercados: Vencedor, Placar Exato de Sets, Sets Vencidos, Resultado do 1º Set, Tie-Break, Games Consecutivos, Handicap e Campeão do Torneio." },
+        { name: "Basquete", count: 92, description: "Liquidação pelo resultado final, incluindo prorrogação. Partidas abandonadas antes do fim são anuladas, exceto apostas de Vencedor e Handicap já com pelo menos 21 minutos jogados. Mercados: Vencedor, Resultado do Intervalo, Handicap, Total de Pontos, Par/Ímpar e combinações de Pontos e Vencedor." },
+        { name: "Beisebol", count: 70, description: "Troca do arremessador titular antes do jogo anula todas as apostas — ele precisa lançar ao menos um arremesso para validá-las. Jogos não concluídos ou remarcados são anulados, salvo se encerrados no mesmo dia. Mercados: Vencedor da Partida (empate paga na odds 1.00) e Resultado Final após 9 innings, com extras decidindo empates." },
+        { name: "Boxe", count: 57, description: "Liquidação pelo resultado oficial ao fim da luta; contestações ou revisões posteriores não afetam o pagamento. As lutas só valem para apostas a partir do sino do 1º round. Troca de lutador anula todas as apostas. Mercados: Vencedor da Luta e Vencedor por Round específico." },
+        { name: "Vôlei", count: 42, description: "Liquidação pelo placar final; prorrogações não contam, salvo indicação contrária. Partida abandonada anula todas as apostas. Mercados: Vencedor da Partida, Vencedor do Set, Placar Exato, Total de Pontos, Handicap de Pontos por Set e Campeão do Torneio (definido só após os playoffs)." },
+      ] },
+    { slug: "esports", eyebrow: "Tópico 02", title: "Esports", kind: "SPORTS",
+      description: "Competições eletrônicas do catálogo, lideradas por Counter-Strike em volume de eventos. O Livro de Regras oficial não publica seções específicas de mercado para esports.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/livro-de-regras", label: "Livro de Regras" },
+      items: [
+        { name: "Counter-Strike", count: 62, description: "Maior categoria de esports do catálogo. O Livro de Regras não traz uma seção específica para Counter-Strike — aplicam-se as regras gerais da plataforma para liquidação de apostas." },
+        { name: "Valorant", count: 10, description: "O Livro de Regras não traz uma seção específica para Valorant — aplicam-se as regras gerais da plataforma para liquidação de apostas." },
+        { name: "League of Legends", count: 8, description: "O Livro de Regras não traz uma seção específica para League of Legends — aplicam-se as regras gerais da plataforma para liquidação de apostas." },
+        { name: "Rocket League", count: 4, description: "O Livro de Regras não traz uma seção específica para Rocket League — aplicam-se as regras gerais da plataforma para liquidação de apostas." },
+        { name: "Dota", count: 3, description: "O Livro de Regras não traz uma seção específica para Dota 2 — aplicam-se as regras gerais da plataforma para liquidação de apostas." },
+        { name: "Age of Empires", count: 3, description: "O Livro de Regras não traz uma seção específica para Age of Empires — aplicam-se as regras gerais da plataforma para liquidação de apostas." },
+      ] },
+    { slug: "nicho", eyebrow: "Tópico 03", title: "Esportes de Nicho", kind: "SPORTS",
+      description: "Modalidades menores ou regionais, com Tênis de Mesa se destacando como a maior categoria do grupo. Só Motor Sport tem regras de mercado detalhadas no Livro de Regras oficial.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/livro-de-regras", label: "Livro de Regras" },
+      items: [
+        { name: "Tênis de Mesa", count: 263, description: "Maior categoria entre os esportes de nicho. O Livro de Regras não traz uma seção específica para tênis de mesa — aplicam-se as regras gerais da plataforma." },
+        { name: "Floorball", count: 40, description: "O Livro de Regras não traz uma seção específica para floorball — aplicam-se as regras gerais da plataforma." },
+        { name: "E-Futebol", count: 9, description: "Apostas em futebol simulado em videogame. O Livro de Regras não traz uma seção específica para e-futebol — aplicam-se as regras gerais da plataforma." },
+        { name: "Golf", count: 7, description: "O Livro de Regras só cobre apostas antecipadas (ante-post): são anuladas se o jogador não se classificar ou não participar do torneio por qualquer motivo. Não há outros mercados detalhados publicamente." },
+        { name: "Motor Sport", count: 6, description: "Seção \"Esportes Motorizados\" do Livro de Regras. Vencedor da corrida liquidado pela posição oficial do pódio (decisões disciplinares posteriores não alteram o resultado); a aposta vale mesmo que o competidor não termine a prova. Mercados: Vencedor da Corrida, Vencedor da Classificação, Confronto Direto entre dois pilotos, Campeonato de Pilotos e de Construtores." },
+        { name: "Fórmula 1", count: 4, description: "Segue as mesmas regras da seção \"Esportes Motorizados\" do Livro de Regras: vencedor pela posição oficial do pódio, aposta válida mesmo sem o piloto terminar a prova, mercados de Classificação, Confronto Direto, Campeonato de Pilotos e de Construtores." },
+        { name: "Lacrosse", count: 1, description: "O Livro de Regras não traz uma seção específica para lacrosse — aplicam-se as regras gerais da plataforma." },
+      ] },
+    { slug: "competicoes", eyebrow: "Tópico 04", title: "Competições em Destaque", kind: "CHIPS",
+      description: "Ligas e torneios apresentados com posição de destaque na página de esportes. Clique em cada uma para ver do que se trata.",
+      source: { url: "https://meridianbet.bet.br/ca/esportes", label: "Página de Esportes" },
+      items: [
+        { name: "Série A", tag: "BR", description: "Primeira divisão do Campeonato Brasileiro de Futebol." },
+        { name: "Série B", tag: "BR", description: "Segunda divisão do futebol brasileiro, com acesso à Série A no ano seguinte." },
+        { name: "Copa do Brasil", tag: "BR", description: "Torneio eliminatório nacional que reúne clubes de todos os estados brasileiros." },
+        { name: "Copa Libertadores", tag: "CONMEBOL", description: "Principal torneio de clubes da América do Sul, organizado pela CONMEBOL." },
+        { name: "Copa Sul-Americana", tag: "CONMEBOL", description: "Segundo torneio de clubes mais importante da CONMEBOL, equivalente à Europa League." },
+        { name: "Premier League", tag: "ING", description: "Primeira divisão do futebol inglês, uma das ligas mais populares do mundo." },
+        { name: "La Liga", tag: "ESP", description: "Primeira divisão do futebol espanhol." },
+        { name: "Bundesliga", tag: "ALE", description: "Primeira divisão do futebol alemão." },
+        { name: "US Open", tag: "TÊNIS", description: "Um dos quatro torneios de Grand Slam do tênis mundial, disputado anualmente em Nova York." },
+      ] },
+    { slug: "recursos", eyebrow: "Tópico 05", title: "Recursos de Apostas", kind: "CARDS",
+      description: "Funcionalidades de apostas oferecidas na plataforma, além da listagem de eventos.",
+      source: { url: "https://meridianbet.bet.br/ca/esportes", label: "Página de Esportes" },
+      items: [
+        { name: "Apostas Aumentadas", tag: "Odds", description: "Cotações com valor reforçado em seleções específicas, divulgadas por tempo limitado." },
+        { name: "Apostas ao Vivo", tag: "Ao vivo", description: "Mercados que se atualizam em tempo real conforme o andamento da partida." },
+        { name: "Pagamento Antecipado", tag: "Saque", description: "Permite encerrar uma aposta antes do fim do evento, recebendo um valor calculado no momento." },
+        { name: "Recomendação por IA", tag: "IA", description: "Sugestões de apostas geradas automaticamente com base em dados dos eventos." },
+      ] },
+    { slug: "cassino", eyebrow: "Tópico 06", title: "Cassino & Loterias", kind: "CARDS",
+      description: "Verticais de jogo além das apostas esportivas, acessíveis pela mesma navegação principal.",
+      source: { url: "https://meridianbet.bet.br/ca/esportes", label: "Página de Esportes" },
+      items: [
+        { name: "Cassino", description: "Catálogo de jogos de mesa e caça-níqueis." },
+        { name: "Cassino ao Vivo", tag: "Ao vivo", description: "Mesas com dealers reais transmitidas em tempo real." },
+        { name: "Loterias", description: "Jogos de loteria com sorteios e números." },
+        { name: "Virtuais", description: "Eventos esportivos simulados, disponíveis a qualquer horário." },
+      ] },
+    { slug: "pagamentos", eyebrow: "Tópico 07", title: "Pagamentos: Depósito e Saque", kind: "FAQ",
+      description: "Prazos e valores oficiais de depósito e saque. Clique numa pergunta para ver a resposta completa.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/popular/como-efetuar-um-saque", label: "Ajuda · Como efetuar um saque" },
+      items: [
+        { name: "Qual o prazo de um saque?", description: "A grande maioria das solicitações de saque é aprovada em menos de 1 minuto. O prazo regulatório máximo é de 120 minutos, conforme a Portaria SPA/MF nº 615/2024." },
+        { name: "Qual o valor mínimo e máximo de saque?", description: "Valor mínimo: R$ 1,00 por transação. Valor máximo: R$ 14.999,00 por transação. Não há limite para o número de solicitações." },
+        { name: "Como faço um saque?", description: "Acesse Minha Conta > Saque, escolha o parceiro de pagamento, informe o valor e conclua a verificação facial (KYC) exigida antes da aprovação." },
+        { name: "Qual o valor mínimo de depósito?", description: "R$ 1,00. O PIX é o principal método de pagamento indicado na plataforma." },
+        { name: "Quando o prêmio de uma aposta é pago?", description: "Em até 120 minutos após o encerramento do evento, conforme os Termos e Condições." },
+      ] },
+    { slug: "verificacao", eyebrow: "Tópico 08", title: "Verificação de Conta e Elegibilidade", kind: "FAQ",
+      description: "Quem pode se cadastrar e como funciona a verificação de identidade (KYC).",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/termos-e-condicoes", label: "Termos e Condições" },
+      items: [
+        { name: "Quem pode se cadastrar?", description: "Maiores de 18 anos completos, residentes no Brasil com CPF válido. Atletas, árbitros e operadores de apostas não podem ter conta na plataforma." },
+        { name: "Como funciona a verificação de identidade?", description: "É obrigatório reconhecimento facial com prova de vida (KYC) antes de liberar depósitos e saques." },
+        { name: "Por quanto tempo minha sessão fica ativa?", description: "É exigido novo login após 30 minutos de inatividade, e autenticação multifator a cada 7 dias ou após períodos prolongados sem uso." },
+        { name: "O que acontece com contas inativas?", description: "Contas sem atividade por 90 dias ou mais podem ser encerradas após 180 dias de inatividade." },
+        { name: "Posso sacar créditos de bônus/promoção diretamente?", description: "Não, salvo se a promoção específica permitir expressamente. Rollovers e condições de uso variam por campanha." },
+      ] },
+    { slug: "regras", eyebrow: "Tópico 09", title: "Regras de Apostas", kind: "FAQ",
+      description: "As 14 seções gerais do Livro de Regras oficial, na íntegra — valem para todos os esportes. As regras específicas de cada modalidade estão no tópico seguinte, \"Regras de Apostas por Esporte\".",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/livro-de-regras", label: "Livro de Regras" },
+      items: [
+        { name: "1. Regras de Apostas", description: "A gerência da Meridianbet se reserva o direito de alterar, modificar ou acrescentar novas regras conforme necessário, a qualquer momento e sem aviso prévio. Ao realizar uma aposta na Meridianbet, o cliente aceita automaticamente todas as regras estipuladas." },
+        { name: "2. Restrições de Idade", description: "Só podem apostar clientes com 18 anos completos ou mais. A empresa se reserva o direito de anular transações feitas por menores de idade ou por inadimplentes." },
+        { name: "3. Realização de Apostas", description: "Uma aposta é considerada inválida caso não seja transmitida corretamente. O valor mínimo de uma aposta é R$ 0,50. Se um cliente fizer múltiplas cópias da mesma aposta, elas podem ser tratadas como uma única; a Meridianbet também pode anular apostas em casos de conluio entre dois ou mais clientes. A plataforma se reserva o direito de recusar qualquer aposta, ou parte dela, a qualquer momento, sem necessidade de justificar o motivo. Se as instruções do cliente forem ambíguas, a Meridianbet pode dividir o valor apostado entre os resultados possíveis apontados; se essa divisão não for viável, a aposta pode ser anulada. Apostas múltiplas são permitidas, mas nenhuma seleção será aceita quando o resultado de uma influenciar diretamente o resultado de outra dentro da mesma múltipla (ver Regra 7 — Apostas Relacionadas). As odds podem variar a qualquer momento, mas tornam-se fixas no exato momento em que a aposta é realizada. Apostas são aceitas até o horário de início anunciado do evento; se uma aposta for aceita inadvertidamente depois desse horário, a Meridianbet se reserva o direito de anulá-la. Limite de pagamento por bilhete: R$ 12.000 (ou equivalente) para apostas envolvendo Premier League, Série A, Bundesliga, La Liga, Ligue 1, Champions League e Europa League; R$ 5.000 (ou equivalente) para bilhetes que incluam ao menos um jogo de outras ligas ou esportes. Bilhetes feitos com bônus/recompensa têm o valor do bônus deduzido do prêmio final — por exemplo, um bônus de R$ 10 usado num bilhete vencedor de R$ 100 resulta em R$ 90 efetivamente recebidos pelo cliente." },
+        { name: "4. Handicap", description: "O valor do handicap é sempre somado ao placar do time da casa. A aposta é considerada void/cancelada quando o resultado bate exatamente no valor de handicap escolhido (por exemplo, Handicap 1, 2, 3 ou 4) — nesse caso o valor apostado retorna integralmente ao cliente. Exemplo oficial com H1 +1,5 gol (o evento passa a começar, para fins de cálculo, em 1,5 a 0 a favor do time 1): se o placar final for 2 a 2, o placar ajustado vira 3,5 a 2 e o bilhete é vencedor. Já com H2 +1,5 gol (mesmo ajuste de 1,5 a 0, mas a favor do time 2/visitante) e o mesmo placar final de 2 a 2, o placar ajustado também é 3,5 a 2 — só que agora o bilhete é perdedor, porque o handicap foi dado ao time 1; para essa aposta em H2 vencer, o visitante precisaria ganhar a partida por dois gols de vantagem ou mais (por exemplo, 2 a 4)." },
+        { name: "5. Disputas de Clientes", description: "A Meridianbet não se responsabiliza por erros de digitação ou humanos que resultem em odds diferentes das pretendidas — nesses casos, pode corrigir a odd ou anular as apostas afetadas. A empresa não é obrigada a fornecer a fonte oficial de um resultado; caso o apostador discorde do resultado, ele deve enviar o link da fonte oficial junto com a reclamação no chat de suporte. Em apostas sobre desempenho individual de atletas, a aposta é válida assim que o atleta entra em jogo e participa por ao menos 1 segundo." },
+        { name: "6. Liquidação de Apostas", description: "Apostas vencedoras são liquidadas com base nas odds exibidas no momento da aceitação, exceto em casos de erro palpável ou de disputas pós-jogo que alterem o resultado. A liquidação pode ser revista em casos de erro ao declarar odds ou termos, seja por falha humana, mau funcionamento do sistema ou omissão. Erro palpável é definido como qualquer informação incorreta publicada sobre um evento — por exemplo, handicap errado, nomes de equipes incorretos, prazos errados ou erros técnicos de exibição — e ocorre especificamente quando (I) as odds estão substancialmente diferentes das disponíveis no mercado geral, ou (II) as odds estão claramente incorretas em relação à probabilidade real do evento." },
+        { name: "7. Apostas Relacionadas", description: "Apostas múltiplas que combinam seleções do mesmo evento não são aceitas quando o resultado de uma influencia diretamente o resultado da outra. Exemplo oficial: numa partida do Manchester United, apostar (1) no Manchester United vencendo por 2 a 0 e (2) em Bruno Fernandes marcando o primeiro gol são consideradas apostas relacionadas, porque esse gol afeta diretamente o placar apostado — se aceitas por engano, são liquidadas como duas apostas simples separadas, com o valor dividido igualmente entre elas. Também não são permitidas múltiplas combinando seleções de eventos diferentes cujos resultados sejam relacionados entre si. Já apostas múltiplas com seleções resolvidas em momentos diferentes dentro do mesmo torneio são liquidadas conforme as odds determinadas em cada etapa — por exemplo, no tênis, apostar (1) em um tenista vencer a semifinal e (2) no mesmo tenista vencer o torneio: a odd da segunda seleção depende do resultado da primeira, e as odds originais anteriores à semifinal não podem ser usadas para essa múltipla. A Meridianbet se reserva o direito de anular parte ou a totalidade de apostas múltiplas com seleções relacionadas aceitas por engano." },
+        { name: "8. Apostas Ante Post", description: "Apostas feitas antes do início do evento, a odds pré-determinadas, em regime \"all-in\": a aposta é perdida se a seleção não participar do evento, salvo regra específica do esporte em contrário." },
+        { name: "9. Flutuações de Preços", description: "Todas as odds estão sujeitas a variação a qualquer momento e sem aviso prévio." },
+        { name: "10. Tempo de Aceitação", description: "Apostas pré-jogo são aceitas até o horário de início exibido. Se a aposta for feita após o evento já ter começado e não houver odds Ao Vivo disponíveis, a seleção é anulada; se houver odds Ao Vivo disponíveis, a aposta é aceita com base nelas." },
+        { name: "11. Partidas Abandonadas, Adiadas ou Reorganizadas", description: "Todas as apostas são anuladas em partidas abandonadas, adiadas ou reorganizadas, exceto se a nova data ficar dentro de 2 dias corridos da data original — ou se uma regra específica do esporte determinar outro tratamento." },
+        { name: "12. Apostas ao Vivo", description: "A Meridianbet se esforça para garantir uma avaliação justa dos eventos Ao Vivo com base na cobertura da emissora de TV. Em caso de interrupção ou falha técnica, a plataforma se reserva o direito de reter a liquidação ou anular as apostas até a conclusão de uma investigação. Se não houver mais atividade depois da aceitação de uma aposta Ao Vivo, ela é anulada, salvo indicação contrária das regras do esporte. As decisões dos árbitros que atuam no evento são finais, independentemente de revisões posteriores." },
+        { name: "13. Aposta ao Zero", description: "Modalidade em que o evento é tratado como se tivesse começado do zero a zero (placar hipotético 0x0) no momento exato da confirmação da aposta, independentemente do placar real naquele instante. Todos os gols ou pontos ocorridos antes da confirmação são desconsiderados; a partir dali, só conta o desempenho das equipes até o fim do evento. Se a equipe selecionada tiver o melhor saldo nesse período \"zerado\", a aposta vence; se tiver saldo inferior, perde; e um empate no saldo também é considerado aposta perdedora, salvo disposição contrária da competição ou do mercado específico. Três exemplos oficiais, todos partindo de um placar de 2x0 no momento da confirmação com seleção no Time da Casa: se o placar final for 2x1, o resultado \"zerado\" é 0x1 — aposta perdedora; se for 3x0, o resultado \"zerado\" é 1x0 — aposta vencedora; se for 3x1, o resultado \"zerado\" é 1x1 — aposta perdedora (empate no saldo). A modalidade vale exclusivamente para o período entre a confirmação da aposta e o término regular do evento, e ao confirmar uma aposta nessa modalidade o cliente declara estar ciente dessas condições." },
+        { name: "14. Regras Gerais de Interrupções", description: "A fonte oficial de resultado é o site oficial do participante, da liga ou competição, ou uma fonte específica indicada para aquele esporte; a Meridianbet não é obrigada a fornecer essa fonte ao apostador — em caso de contestação, quem reclama deve enviar o link junto com a reclamação. Se um atleta desistir depois do início do evento, o resultado alcançado até ali vale para todas as apostas feitas até o momento da interrupção. Toda partida precisa ocorrer de forma integral para que a cotação valha; se for encerrada antes do fim do tempo regulamentar, a cotação muda para 1,00 e o valor apostado é devolvido. O resultado oficial é sempre o obtido em campo durante o tempo regulamentar — prorrogação, pênaltis e qualquer alteração posterior (como uma desclassificação) não são considerados, salvo indicação contrária do organizador — e o resultado alcançado vale independentemente de a equipe/atleta ser mandante ou visitante. Cada modalidade tem sua própria regra de interrupção: no Futebol, abandono antes do intervalo anula tudo, abandono depois do intervalo sem remarcação em 2 dias liquida pelo resultado alcançado, e os mercados de Resultado Final e Chance Dupla só valem se o 1º tempo tiver sido concluído; no Tênis, todos os jogos disputados são válidos até o encerramento oficial ou o anúncio do vencedor; no Hóquei no Gelo, interrupção antes do 2º período sem continuação no mesmo dia zera a cotação em 1,00, mas depois do 2º período o resultado alcançado vale; no Vôlei e no Beisebol, qualquer interrupção zera a cotação em 1,00 para todos os mercados em aberto; nos demais esportes, um atraso ou interrupção sem retomada no mesmo dia zera em 1,00 apenas as apostas cujo resultado ainda pudesse mudar, enquanto as apostas cujo resultado já estava definido continuam válidas — por exemplo, numa partida interrompida em 2x1: uma aposta em \"0-2 gols\" já é perdedora, uma aposta em \"3+ gols\" já é vencedora, e uma aposta em \"4+ gols\" (que ainda poderia ir para qualquer lado) vira cotação 1,00." },
+      ] },
+    { slug: "regras-esporte", eyebrow: "Tópico 10", title: "Regras de Apostas por Esporte", kind: "FAQ",
+      description: "As 18 seções específicas por modalidade do Livro de Regras oficial, na íntegra — além das 14 regras gerais do tópico anterior, cada esporte tem particularidades próprias de liquidação e mercados.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/livro-de-regras", label: "Livro de Regras" },
+      items: [
+        { name: "Atletismo", description: "A liquidação segue a cerimônia de medalhas em caso de desqualificação posterior de algum atleta: ouro = 1º lugar, prata = 2º e bronze = 3º. Quando não há cerimônia de medalhas, vale simplesmente quem cruza a linha de chegada em primeiro lugar. O mercado descrito é o Vencedor do Evento, que segue exatamente esse critério de liquidação." },
+        { name: "Beisebol", description: "Se houver troca do arremessador titular (o jogador que realiza o primeiro arremesso da partida por cada equipe) antes do início do jogo, todas as apostas são anuladas — os arremessadores escalados precisam lançar ao menos um arremesso para as apostas valerem. Partidas não concluídas ou remarcadas têm as apostas anuladas, exceto se encerradas no mesmo dia até exatamente 23h59min59s. Há dois mercados de resultado: Vencedor da Partida (seleção 1 = mandante ou 2 = visitante), em que um empate é liquidado com odd 1,00 (devolução do valor apostado); e Resultado Final (mandante, empate ou visitante), decidido ao fim da 9ª entrada — se ainda estiver empatado nesse ponto, o resultado sai das entradas extras (innings extras)." },
+        { name: "Boxe", description: "A liquidação segue o resultado oficial ao final da luta; contestações ou revisões posteriores não mudam o resultado. A substituição de qualquer um dos lutadores anula todas as apostas, sem mercado alternativo. No mercado Vencedor e Round Exato, a aposta só é premiada se o lutador indicado vencer exatamente no round apostado (por nocaute, parada do árbitro ou qualquer outro meio) ou pela decisão dos juízes após o último round. Para fins de aposta, a luta só passa a valer oficialmente a partir do sino do primeiro round — o mercado Preços de Jogo/Moneyline prevê apenas o vencedor da luta." },
+        { name: "Ciclismo", description: "Nas apostas de vencedor de etapa (Preços de Etapa), vale quem cruza a linha de chegada primeiro naquela etapa específica. Nas apostas de confronto direto entre dois ciclistas (Stage Rider), ambos precisam largar na etapa para a aposta valer; se os dois abandonarem a mesma etapa, a aposta é anulada independentemente de qual dos dois tinha completado mais distância ou estava melhor posicionado no momento da desistência — não importa a posição relativa, só que ambos tenham saído. Nas apostas de vencedor da corrida geral (Preços Definitivos), aplicam-se também as regras de Apostas Ante Post." },
+        { name: "Basquete", description: "O resultado considera o jogo completo, incluindo prorrogação, salvo indicação contrária. O intervalo equivale aos primeiros 20 minutos programados (1º e 2º quartos); já \"21 minutos de jogo\" conta o tempo efetivamente jogado. Em partidas abandonadas antes do fim, todas as apostas são anuladas, exceto as já liquidadas e os mercados de Vencedor e Handicap, que valem se pelo menos 21 minutos tiverem sido disputados. Se o placar terminar empatado no tempo regulamentar e não houver prorrogação, o Vencedor é liquidado com odd 1,00. No Resultado do Intervalo, abandono antes do intervalo anula tudo; depois do intervalo, a aposta vale normalmente. O Total de Pontos soma o placar combinado ao final, incluindo prorrogação, e há também um mercado de Par ou Ímpar sobre esse total. Por fim, duas combinações distintas: Pontos na Partida e Vencedor (1&-P/1&+P/2&-P/2&+P, usando o total de pontos do jogo inteiro) e Pontos no Intervalo e Vencedor (a mesma lógica de combinação, mas usando o total de pontos apurado só até o intervalo)." },
+        { name: "Futebol — Liquidação e Partidas Abandonadas", description: "Liquidação pelo Tempo Normal: 90 minutos programados (1º e 2º tempo) + acréscimos, com base no resultado oficial de campo conforme a cobertura da emissora de TV. O intervalo equivale aos 45 minutos do 1º tempo + acréscimos; a prorrogação (quando disputada) soma os períodos extras + acréscimos, gols de ouro/prata e/ou pênaltis, mas só conta para a liquidação se o mercado indicar isso especificamente — por padrão, todos os mercados abaixo valem só para o Tempo Normal. O mercado Preços de Jogo prevê simplesmente o vencedor ao final do Tempo Normal. Se a partida tiver dois tempos entre 40 e 50 minutos cada, o resultado no tempo regulamentar vale normalmente; fora dessa janela, as apostas são liquidadas com odd 1,00 (devolução). Em campo neutro, a equipe exibida à esquerda na página do evento é considerada a mandante para efeito dos mercados. Partidas abandonadas são anuladas, salvo remarcação em até 2 dias corridos; se o abandono ocorrer após o intervalo e não houver remarcação nesse prazo, liquida-se pelo resultado alcançado até a interrupção." },
+        { name: "Futebol — Total de Gols (2 e 3 Opções)", description: "Aposta no total de gols combinados das duas equipes durante o Tempo Normal (prorrogação e pênaltis não contam). Existem duas variantes: a de \"2 Opções\" pergunta se o total fica acima (mais) ou abaixo (menos) de uma linha como 0,5, 1, 1,5, 2, 2,5 etc. — e, como a linha normalmente tem meio gol, não costuma dar empate; a de \"3 Opções\" usa um número inteiro exato (1, 2, 3...) e oferece três resultados possíveis: mais gols, menos gols, ou exatamente aquele número. Só na variante de \"2 Opções\", se por algum motivo o total de gols bater exatamente na linha cotada, a aposta é anulada com odd 1,00 e o valor é devolvido." },
+        { name: "Futebol — Gols da Equipe (Faixas)", description: "Mercado que aposta na quantidade de gols de uma equipe específica, usando faixas com indicadores próprios: \"0\" (a equipe não marca nenhum gol); \"0-1\" (a equipe marca menos de 2 gols, ou seja, 0 ou 1); \"1\" (a equipe marca exatamente 1 gol); \"0,5+\" (1 gol ou mais); \"1+\" (mais de 1 gol — se a equipe marcar exatamente 1, a aposta vira odd 1,00); \"1,5+\" (2 gols ou mais); \"2+\" (mais de 2 gols — exatamente 2 vira odd 1,00); \"2,5+\" (3 gols ou mais); \"3+\" (mais de 3 gols — exatamente 3 vira odd 1,00); \"3,5+\" (4 gols ou mais); \"4+\" (mais de 4 gols — exatamente 4 vira odd 1,00); e \"I+II\" (a equipe precisa marcar ao menos 1 gol em cada um dos dois tempos da partida)." },
+        { name: "Futebol — Handicap de Gols", description: "Prevê o vencedor depois de aplicar um ajuste (handicap) ao placar. O valor do handicap é sempre somado ao placar do time da casa, e a liquidação usa o placar já ajustado ao final do Tempo Normal (prorrogação e pênaltis excluídos). Exemplo do próprio Livro de Regras: handicap de casa +1,5 gol com placar final 2 a 2 vira, depois do ajuste, 3,5 a 2 — vitória do time da casa. Se o placar ajustado terminar exatamente empatado, a aposta é anulada (void) e o valor é devolvido integralmente." },
+        { name: "Futebol — Resultado Duplo (Intervalo/Tempo Integral)", description: "Aposta combinada que precisa acertar o resultado do intervalo E o resultado final do Tempo Integral ao mesmo tempo. O intervalo é definido como os 45 minutos do 1º tempo + acréscimos; o Tempo Integral são os 90 minutos completos (1º e 2º tempos) + acréscimos, sem contar prorrogação. Os dois períodos (intervalo e final) precisam ser concluídos para a aposta valer normalmente. Se a partida for abandonada antes do intervalo, todas as apostas deste mercado são anuladas; se for abandonada depois do intervalo mas antes de completar os 90 minutos, a aposta é liquidada pelo resultado alcançado até a interrupção — desde que o 1º tempo tenha sido concluído." },
+        { name: "Futebol — Primeiro Marcador", description: "Aposta em qual jogador marca o primeiro gol da partida (também chamado de mercado \"Artilheiro\" em algumas telas), contando só gols do Tempo Normal (prorrogação não conta). Gols contra não contam como um \"marcador\" válido para este mercado. Apostas são anuladas para jogadores que não participem da partida. Se o jogador escolhido for substituído ou expulso antes que o primeiro gol da partida seja marcado, a aposta é considerada perdedora. Se a partida for abandonada antes de qualquer gol ser marcado, todas as apostas são anuladas, inclusive as do mercado Artilheiro; se o abandono ocorrer depois que o primeiro gol já saiu, as apostas já apuradas continuam válidas." },
+        { name: "Futebol — Total de Escanteios (Acima/Abaixo)", description: "Aposta no número de escanteios (valor exato ou faixa) durante o Tempo Normal. Só contam escanteios efetivamente cobrados — um escanteio apenas concedido mas não batido não entra na contagem. Se a partida for abandonada antes do intervalo, todas as apostas de escanteios são anuladas; se o abandono ocorrer antes do fim do Tempo Normal (mas depois do intervalo), apenas os mercados de \"Escanteios do 1º Tempo\" continuam válidos — os demais mercados de escanteios são anulados." },
+        { name: "Futebol — Placar Exato (Pontuação Correta)", description: "Aposta no resultado exato da partida ao final do Tempo Normal (ex.: 2 a 1), sem margem de erro — o placar precisa bater exatamente com o apostado. Prorrogação e pênaltis não contam, e a partida precisa completar os 90 minutos regulamentares para a aposta valer; se não completar, todas as apostas deste mercado são anuladas." },
+        { name: "Futebol — Primeiro Gol e Tempo do 1º Gol", description: "O mercado Primeiro Gol prevê qual das duas equipes marca primeiro (não um jogador específico), contando só o Tempo Normal; gols contra contam para o time creditado (quem se beneficia do gol). Já o mercado Tempo do 1º Gol (ou Minutos Principais / Total de Minutos de Gols) pede a faixa de tempo em que sai o primeiro gol (por exemplo, \"21-30 minutos\"), usando como referência o horário oficial mostrado pela cobertura de TV — um gol marcado aos 19min05s é liquidado no 20º minuto; um gol nos primeiros 20 segundos de jogo é registrado no 1º minuto; um gol aos 73min02s é registrado no 74º minuto. Gols nos acréscimos do 1º tempo são registrados como tendo ocorrido no 45º minuto, e os dos acréscimos do 2º tempo, no 90º minuto." },
+        { name: "Futebol — Cartões (Total Acima/Abaixo)", description: "Previsão de cartões amarelos ou vermelhos acima ou abaixo de um valor de referência (por tempo ou por equipe, dependendo do mercado específico). Apenas jogadores em campo contam — reservas no banco, técnico e comissão técnica não entram na contagem. A forma de contar por jogador é: 1 cartão amarelo = 1 cartão; um segundo cartão amarelo para o mesmo jogador soma mais 1 cartão pelo amarelo e mais 1 pelo vermelho automático que ele gera, totalizando 3 cartões para aquele jogador; um cartão vermelho direto (sem passar por dois amarelos) conta como 2 cartões." },
+        { name: "Futebol — Total de Chutes", description: "Aposta no total combinado de chutes das duas equipes: soma-se os chutes no alvo (a gol) e os chutes para fora. Chutes bloqueados por um defensor antes de chegar ao gol não entram na contagem." },
+        { name: "Futebol — Gols/Escanteios/Cartões por Faixa de Tempo", description: "Mercado que pergunta se vai haver 1 ou mais gols, escanteios, cartões (ou uma substituição) dentro de uma faixa de tempo específica da partida — por exemplo, entre os minutos 21 e 30. Se a partida for abandonada durante essa faixa de tempo, as apostas ainda em aberto são anuladas, salvo se já tiverem sido liquidadas antes da interrupção." },
+        { name: "Futebol — Jogador para Marcar a Qualquer Momento", description: "Aposta em um jogador marcar a qualquer momento da partida, contando só gols do Tempo Normal. Gols contra não contam para este mercado. A aposta é anulada se o jogador escolhido não começar a partida. Se o jogador for substituído ou expulso antes de marcar, a aposta é considerada perdedora; caso contrário, basta marcar um gol em qualquer momento do jogo para vencer." },
+        { name: "Futebol — Pontapé Inicial", description: "Aposta em qual das duas equipes realiza o pontapé inicial (o chute que dá início à partida). É aceita até 10 minutos antes do horário programado de início, e a aposta é liquidada imediatamente assim que o pontapé inicial oficial acontece." },
+        { name: "Futebol — Gols por Ligas", description: "Aposta no total de gols marcados ao longo de um número determinado de partidas de uma mesma liga dentro de um período definido. Se 1 partida do período for adiada ou cancelada, ela é tratada como tendo contribuído automaticamente com 2 gols para o total; se 2 partidas ou mais forem adiadas ou canceladas, a aposta inteira é considerada inválida e o valor é devolvido." },
+        { name: "Futebol — Apostas Divisionais Definitivas", description: "Aposta no vencedor final de um campeonato ou grupo, definido pela posição final da equipe ao término de toda a programação de jogos da temporada. Deduções de pontos aplicadas durante a temporada (por exemplo, por punição disciplinar) contam normalmente para a posição final; já deduções de pontos decididas depois que todos os jogos da temporada já terminaram são ignoradas para efeito da aposta." },
+        { name: "Futsal", description: "O placar considera apenas os 40 minutos regulamentares de jogo — prorrogação e pênaltis não contam. Mercados: Preços de Jogo (vencedor da partida), Handicap (vencedor após ajuste do placar pelo handicap) e Total de Gols Acima/Abaixo de um valor de referência." },
+        { name: "Golfe", description: "O Livro de Regras só detalha as Apostas Ante Post para o golfe: são anuladas se o jogador não se classificar para o torneio ou não participar dele por qualquer motivo, seja qual for a causa." },
+        { name: "Handebol", description: "O placar considera apenas os 60 minutos regulamentares — prorrogação e pênaltis ficam de fora, salvo indicação contrária. Mercados: Preços de Jogo (vencedor), Handicap (vencedor após ajuste do placar), Total de Gols (combinado das duas equipes) e Dupla Chance (casa vence ou empata / qualquer um dos dois vence / visitante vence ou empata), além de Pontos e Vencedor (1&-P, 1&+P, 2&-P, 2&+P)." },
+        { name: "Hóquei no Gelo", description: "O placar considera os 60 minutos regulamentares (três períodos) — prorrogação e pênaltis ficam de fora, salvo indicação contrária. Mercados: Preços de Jogo (vencedor, sem contar a prorrogação salvo indicação em contrário), Dupla Chance, Total de Gols Acima/Abaixo de um valor de referência, Handicap e Pontos e Vencedor (1&-P/1&+P/2&-P/2&+P)." },
+        { name: "Esportes Motorizados", description: "Liquidação pela posição oficial do pódio; decisões disciplinares tomadas depois da corrida não alteram o resultado da aposta. No Vencedor da Corrida, a aposta vale mesmo que o piloto não termine a prova, e a corrida passa a contar oficialmente a partir do sinal para a volta de aquecimento — se for interrompida e reiniciada, as apostas continuam válidas. No Vencedor da Classificação, vale a posição final da sessão de qualificação, ignorando ajustes de grid feitos depois. No Confronto Direto entre dois pilotos: se um não largar, a aposta é anulada; se nenhum terminar a prova, vence quem completou mais voltas; se ambos abandonarem na mesma volta, a aposta é anulada. Nos Campeonatos de Pilotos e de Construtores, a liquidação é feita pela pontuação acumulada na temporada apurada após o pódio da corrida final, sem considerar consultas ou contestações posteriores; o Campeonato de Construtores segue exatamente as mesmas regras de liquidação do Campeonato de Pilotos, apenas aplicadas às equipes em vez dos pilotos individualmente; um piloto que não disputa a temporada é tratado como \"não corredor\" para efeito da aposta." },
+        { name: "Rúgbi", description: "O placar considera os 80 minutos regulamentares; o intervalo corresponde aos primeiros 40 minutos do 1º tempo, e o \"Tempo Extra\" é o período disputado depois dos 80 minutos. Partidas abandonadas antes do fim têm as apostas anuladas, exceto as já liquidadas ou quando houver indicação contrária; apostas específicas de prorrogação são anuladas se a partida for interrompida antes do fim programado. Mercados: Preços de Jogo (vencedor ao fim do tempo normal) e Preços de Handicap (vencedor após ajuste do placar pelo handicap, também ao fim do tempo normal)." },
+        { name: "Sinuca", description: "A liquidação segue as odds vigentes no momento em que a aposta foi aceita; contestações do resultado depois do jogo não alteram a liquidação. O único mercado descrito no Livro de Regras é o Preços de Jogo: prever o vencedor da partida." },
+        { name: "Futebol Americano", description: "Na aceitação da aposta, em caso de incerteza ou dúvida sobre o resultado, a liquidação é determinada pelo resultado oficial: em nfl.com para jogos profissionais (NFL), ou em donbest.com para o universitário (NCAAF). Qualquer ajuste feito depois de 24 horas do fim do jogo não é considerado para a liquidação, independentemente da fonte consultada. Mercados: Preços de Jogo/Moneyline (vencedor), Handicap (vencedor após ajuste pelo spread de pontos), Total de Pontos (Acima/Abaixo de um valor combinado) e Pontos e Vencedor (1&-P/1&+P/2&-P/2&+P)." },
+        { name: "Voleibol", description: "O placar final do jogo é o que vale — prorrogações não contam, salvo indicação contrária. Se a partida for abandonada, todas as apostas são anuladas. Mercados: Preços de Jogo (vencedor da partida), Definir Preços (vencedor de um set específico), Placar Exato (placar exato da partida) e dois mercados de total de pontos que não devem ser confundidos: Total de Pontos, sobre o placar final de toda a partida, e Pontos de Ajuste, sobre o total combinado dentro de um set específico apenas. O Campeão do Torneio só é liquidado após o fim dos playoffs — o desempenho na fase de classificação da temporada regular não conta para esse mercado." },
+        { name: "Esportes de Inverno", description: "Se uma seleção não iniciar o evento por qualquer motivo, a aposta correspondente é anulada. Em provas de confronto direto (descida, slalom, salto de esqui), os dois participantes precisam largar para a aposta valer — no salto de esqui, também precisam se classificar antes. No esqui alpino, se nenhum competidor completar a prova, todas as apostas são anuladas." },
+        { name: "Tênis — Adiamentos, Abandonos e Desistências", description: "Em caso de adiamento, aguarda-se o resultado final, desde que a partida não seja depois abandonada ou cancelada. A desistência de qualquer jogador — seja antes do início da partida, seja já durante ela — cancela todas as apostas relacionadas àquela partida." },
+        { name: "Tênis — Total de Jogos e Total de Sets", description: "O mercado Total de Jogos exige acertar o placar exato de games entre os dois jogadores. Já o de Total de Sets exige que o número de sets efetivamente disputado na partida bata com o previsto — se o formato oficial de sets for alterado, todas as apostas deste mercado são anuladas. No mercado \"Vencedor do total de sets\", os números batem exatamente com a contagem final: \"2\" só vence se a partida terminar em exatamente 2 sets, \"3\" só se forem exatamente 3, e assim por diante para \"4\" e \"5\"." },
+        { name: "Tênis — Aposta em Sets", description: "Mercado identificado como \"1s\" e \"2s\": a aposta \"1s\" vence se o 1º jogador da lista vencer ao menos um set na partida, e a aposta \"2s\" vence se o 2º jogador da lista vencer ao menos um set — não é preciso vencer a partida, só um set." },
+        { name: "Tênis — Apostas no Primeiro Set", description: "Combina o vencedor do 1º set com o vencedor da partida. \"I1-1\": o 1º jogador vence o 1º set e também vence a partida. \"I1-2\": o 1º jogador vence o 1º set, mas perde a partida. \"I2-1\": o 2º jogador vence o 1º set, mas perde a partida. \"I2-2\": o 2º jogador vence o 1º set e também vence a partida." },
+        { name: "Tênis — Outros Mercados", description: "Placar Correto: acertar exatamente o placar de um set. Resultado Final: prever se vence o 1º ou o 2º jogador da lista. Tie-Break: prever se vai haver ou não um tie-break em algum set da partida. Dois Jogos Seguidos: prever se o 1º jogador vence dois games seguidos, se o 2º jogador vence dois games seguidos, ou se nenhum dos dois consegue isso. Aposta Dupla: combina o vencedor da partida com o total de games acima ou abaixo de uma referência, nas variantes 1&-G (1º jogador vence e menos games que a referência), 1&+G (1º jogador vence e mais games), 2&-G e 2&+G (equivalentes para o 2º jogador)." },
+        { name: "Tênis — Torneios", description: "A aposta deve prever o vencedor do torneio (aplicam-se também as regras de Apostas Ante Post). A desqualificação de um jogador depois do resultado não afeta a liquidação — as apostas já apuradas são mantidas. Se o organizador optar por um Super Tie-Break no lugar de um 3º set tradicional (prática comum em torneios da ITF, entre outros), o resultado obtido nesse formato alternativo é considerado válido para a liquidação. Se os dados oficiais do resultado não estiverem disponíveis até 48 horas depois do término da partida, as apostas pendentes são canceladas e o valor é devolvido." },
+        { name: "Tênis — Preços de Handicap", description: "A aposta deve prever o vencedor da partida depois de aplicado o ajuste do handicap ao placar de games ou sets, conforme o mercado especificado." },
+        { name: "Corrida de Cavalos — Corrida Anulada, Abandonada ou Nula", description: "As apostas são anuladas se a corrida for abandonada, se for declarada nula, se as condições da corrida ou os competidores inscritos mudarem, ou se as declarações noturnas (a confirmação da véspera de quais cavalos correm) não forem válidas." },
+        { name: "Corrida de Cavalos — Corridas Remarcadas", description: "Se a corrida for remarcada para o mesmo dia mantendo as declarações noturnas válidas, as apostas continuam valendo, salvo pedido de reembolso feito antes do novo horário de largada. Um cavalo que estava sob as ordens do starter na corrida original mas que fica de fora da corrida remarcada é tratado como \"não corredor\" (sujeito à Regra 4 de Tattersalls). Se as declarações noturnas não forem válidas para a nova data, as apostas são anuladas." },
+        { name: "Corrida de Cavalos — Alterações após o Resultado Oficial", description: "Se o resultado for alterado depois do resultado oficial (após a pesagem dos jóqueis) em função de um recurso ou objeção, essa alteração posterior é ignorada para efeito da liquidação das apostas — vale o resultado oficial original." },
+        { name: "Corrida de Cavalos — Primeiro Após o Posto (FPP) e Exceções", description: "Apostas em corridas do Reino Unido e da Irlanda são liquidadas pela regra \"Primeiro Após o Posto\" (First Past the Post, FPP) em conjunto com o resultado oficial — isso vale para apostas simples, para múltiplas e para a parte \"para vencer\" de apostas Each-Way. O FPP não se aplica, porém, em dez situações específicas: (1) o cavalo seguir o caminho errado; (2) o cavalo carregar o peso errado, ou o jóquei não pesar corretamente; (3) Apostas Ante Post; (4) apostas de Previsão ou Tricast; (5) corrida vazia (sem competidores válidos); (6) apostas do tipo Tote/Pari-Mutuel; (7) um cavalo ser declarado vencedor por engano; (8) apostas em corridas de apenas dois corredores, ou partidas especiais; (9) o mercado \"sem o favorito\"; e (10) qualquer outro mercado especial." },
+        { name: "Corrida de Cavalos — Preços Antecipados", description: "Ficam disponíveis diariamente, em corridas selecionadas, depois das declarações noturnas e até o primeiro \"show\" (abertura de apostas) no próprio hipódromo." },
+        { name: "Corrida de Cavalos — Sem Preço Inicial Oficial", description: "Se não houver um Preço Inicial Oficial nem um Preço Inicial Fora do Curso disponível para a corrida, a aposta é liquidada com base nas Odds Tote (o sistema de apostas mútuas)." },
+        { name: "Corrida de Cavalos — Preços de Colocação (Each-Way)", description: "As frações pagas pela parte \"colocado\" de uma aposta Each-Way dependem do número de corredores: com menos de 5 corredores, todos correm apenas \"para vencer\" (sem parte de colocado); com 5 a 7 corredores, paga-se 1/4 da odd para os 2 primeiros colocados; com 8 ou mais corredores, paga-se 1/5 da odd para os 3 primeiros colocados." },
+        { name: "Corrida de Cavalos — Preços Show Aceitos", description: "O \"Preço Show\" (odd de abertura no hipódromo) vigente pode ser usado na aposta desde que a corrida tenha 3 ou mais corredores confirmados. Se um cavalo for retirado depois disso, nenhum novo Preço Show fica disponível até que um novo mercado seja formado." },
+        { name: "Corrida de Cavalos — Regra 4 de Tattersalls (Deduções)", description: "Quando um cavalo é retirado da corrida antes da largada depois que a aposta já foi feita, aplica-se uma dedução sobre os ganhos da aposta, definida pela odd do cavalo retirado no momento da retirada: odds de 1/9 ou menos → dedução de 90 pence por unidade apostada; de 11/2 a 17/2 → 85p; de 1/4 a 1/5 → 80p; de 3/10 a 2/7 → 75p; de 2/5 a 1/3 → 70p; de 15/8 a 9/4 → 65p; de 13/8 a 7/4 → 60p; de 4/5 a 4/6 → 55p; de 20/21 a 5/6 → 50p; de pares (evens) a 6/5 → 45p; de 5/4 a 6/4 → 40p; de 8/5 a 7/4 → 35p; de 9/5 a 9/4 → 30p; de 12/5 a 3/1 → 25p; de 16/5 a 4/1 → 20p; de 2/9 a 2/11 → 15p; de 1/6 a 1/9 → 10p; de 10/1 a 14/1 → 5p; e acima de 14/1, nenhuma dedução é aplicada. Se dois ou mais cavalos forem retirados no mesmo evento, a dedução total nunca ultrapassa 90 pence por unidade apostada." },
+        { name: "Corrida de Cavalos — Corridas de Dois Corredores", description: "Nessas corridas, as apostas são aceitas normalmente com Preços Antecipados, de Tabuleiro (Board) e de Exibição (Show). Apostas de Previsão não são aceitas nessas corridas e, se forem aceitas por engano, são anuladas. Se uma corrida for reduzida a apenas 2 corredores por causa de \"não corredores\" (cavalos retirados), aplica-se a Regra 4 de Tattersalls e as apostas de Previsão/Tricast já feitas são anuladas." },
+        { name: "Corrida de Cavalos — Favoritos Não Nomeados", description: "Apostas feitas no \"favorito\" sem nomear um cavalo específico só são aceitas ao Preço Inicial (Starting Price); se houver dois ou mais cavalos empatados como favoritos, o valor da aposta é dividido igualmente entre eles. Essas apostas valem apenas \"para vencer\" — se uma aposta Each-Way for aceita por engano nessas condições, a parte referente ao \"colocado\" é anulada." },
+        { name: "Corrida de Cavalos — Walkovers e Corridas Vazias", description: "Todas as apostas em corridas declaradas \"walkover\" (com um só corredor efetivo, sem disputa real) ou declaradas nulas são anuladas, independentemente de a seleção ter sido \"vencedora\" ou \"perdedora\" na prática." },
+        { name: "Corrida de Cavalos — Retiradas e Não Corredores", description: "Se um cavalo se recusar a correr já sob as ordens do starter, a aposta nele é considerada perdedora. Se o cavalo for declarado \"não corredor\" pelo próprio starter antes disso, as apostas feitas nele são reembolsadas integralmente. Apostas feitas nos corredores restantes a Preços Antecipados ou de Exibição, feitas antes de uma retirada, ficam sujeitas à dedução da Regra 4 de Tattersalls." },
+        { name: "Corrida de Cavalos — Dead Heat e Regras de Colocação", description: "Em caso de \"dead heat\" (empate) entre duas seleções, metade do valor apostado é liquidada pela odd cheia da seleção e a outra metade é considerada perdida; havendo mais de duas seleções empatadas, a divisão é proporcional ao número de empatados. Nas regras de colocação: para o mercado \"vencedor\", se dois ou mais cavalos empatarem em 1º lugar, todos são considerados vencedores; para o mercado \"colocado\", um empate em 1º lugar preenche as duas primeiras posições pagas, um empate em 2º preenche a 2ª e a 3ª posição, três cavalos empatados em 1º preenchem as três primeiras posições, e três empatados em 2º preenchem a 2ª, a 3ª e a 4ª posição." },
+      ] },
+    { slug: "mercados", eyebrow: "Tópico 11", title: "Glossário de Mercados de Apostas", kind: "FAQ",
+      description: "Como funciona cada tipo de mercado citado nos esportes acima, segundo o Livro de Regras e a terminologia padrão de apostas esportivas.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/livro-de-regras", label: "Livro de Regras" },
+      items: [
+        { name: "Vencedor da Partida (Moneyline)", description: "Aposta em qual dos dois lados vence a partida (ou o empate, quando existir essa opção), com base no resultado ao final do tempo regulamentar de cada esporte." },
+        { name: "Handicap", description: "Uma vantagem ou desvantagem artificial (em gols, pontos ou games) é somada ao placar antes da liquidação, para equilibrar o confronto. Na Meridianbet, o valor do handicap é sempre somado ao time da casa; se o resultado exato do handicap for atingido, a aposta é anulada e devolvida em vez de perder ou ganhar." },
+        { name: "Total de Gols / Pontos (Over/Under)", description: "Aposta se o total combinado de gols, pontos ou games das duas equipes fica acima (over) ou abaixo (under) de um valor de referência definido pela casa, como 2,5 gols." },
+        { name: "Placar Exato", description: "Aposta no resultado exato da partida (ou de um set/período, quando aplicável) — a mais difícil de acertar entre os mercados comuns, e por isso costuma pagar mais." },
+        { name: "Ambas Marcam", description: "Aposta se as duas equipes marcam pelo menos um gol cada durante a partida, independentemente de quem vence." },
+        { name: "Artilheiro / Primeiro Marcador", description: "Aposta em qual jogador marca (o primeiro gol, ou qualquer gol, dependendo do mercado) durante o tempo regulamentar. Segundo o Livro de Regras, a aposta é anulada se o jogador escolhido não entrar em campo." },
+        { name: "Escanteios e Cartões", description: "Mercados de estatísticas do jogo de futebol à parte do placar: total de escanteios ou de cartões (amarelos/vermelhos) da partida, de um time específico ou de um período determinado, comparado a um valor de referência." },
+        { name: "Resultado do Intervalo", description: "Aposta em qual lado está à frente (ou empatado) no intervalo da partida, em vez de no resultado final." },
+        { name: "Dupla Chance", description: "Cobre duas das três possibilidades de resultado em uma única aposta — por exemplo, \"casa vence ou empata\" — reduzindo o risco em troca de uma odd menor." },
+        { name: "Combinações de Pontos e Vencedor (1&-P, 1&+P, 2&-P, 2&+P)", description: "Combina em uma única aposta o vencedor da partida com o total de pontos/gols acima (+P) ou abaixo (-P) de uma referência — por exemplo, \"time da casa vence e o jogo tem menos de 2,5 gols\"." },
+        { name: "Sets Vencidos / Placar Exato de Sets", description: "No tênis e no vôlei: aposta em quantos sets cada lado vence, ou no placar exato de sets da partida (ex.: 3 sets a 1)." },
+        { name: "Resultado do 1º Set", description: "Aposta apenas em quem vence o primeiro set da partida, sem considerar o restante do jogo." },
+        { name: "Tie-Break", description: "No tênis: aposta em se algum set da partida vai chegar a um tie-break (desempate)." },
+        { name: "Games Consecutivos", description: "No tênis: aposta em um jogador vencer uma sequência determinada de games seguidos." },
+        { name: "Campeão do Torneio", description: "Aposta de longo prazo em quem vence a competição inteira. No vôlei, por exemplo, só é liquidada depois dos playoffs — a classificação da fase de grupos não conta." },
+        { name: "Vencedor por Round", description: "No boxe: aposta em qual lutador vence e em qual round específico, seja por nocaute/parada do árbitro ou por decisão dos jurados." },
+        { name: "Vencedor da Sessão de Classificação", description: "No automobilismo: aposta em quem termina em primeiro na sessão de classificação (qualifying), liquidada pela posição final dessa sessão, não da corrida." },
+        { name: "Confronto Direto (Head-to-Head)", description: "No automobilismo: aposta em qual de dois pilotos específicos termina na frente do outro. Se um não largar, a aposta é anulada; se nenhum terminar a prova, vence quem completou mais voltas." },
+        { name: "Campeonato de Pilotos / Construtores", description: "Aposta de longo prazo em quem vence o campeonato da temporada, seja na classificação de pilotos ou na de construtores/equipes." },
+        { name: "Apostas Ante Post", description: "Apostas feitas antes do evento começar, a odds fixadas antecipadamente, em regime all-in: se a seleção não participar do evento por qualquer motivo, a aposta é perdida (salvo regra específica do esporte em contrário)." },
+        { name: "Aposta ao Zero", description: "Mercado especial (ver Regras de Apostas acima) que \"zera\" o placar no momento em que a aposta é confirmada — só o que acontece depois conta para o resultado." },
+      ] },
+    { slug: "conta", eyebrow: "Tópico 12", title: "Conta & Suporte", kind: "CHIPS",
+      description: "Fluxos de conta, engajamento e atendimento disponíveis no site. Clique em cada um para ver do que se trata.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda", label: "Central de Ajuda" },
+      items: [
+        { name: "Registrar", description: "Criação de conta informando CPF e dados pessoais. É preciso ter 18 anos completos e residir no Brasil (ver Verificação de Conta e Elegibilidade)." },
+        { name: "Entrar", description: "Acesso à conta já cadastrada para apostar, depositar ou sacar." },
+        { name: "Promoções", description: "Ofertas e bônus ativos da plataforma. Créditos promocionais só podem ser sacados se a promoção específica permitir (ver Pagamentos)." },
+        { name: "Missões", description: "Desafios e recompensas por completar ações na plataforma, parte do programa de engajamento do usuário." },
+        { name: "Ajuda", description: "Central de suporte com artigos sobre conta, pagamentos, funcionalidades e políticas da plataforma." },
+        { name: "Como Depositar", description: "Guia oficial de depósito: o PIX é o principal método indicado, com valor mínimo de R$ 1,00 (ver Pagamentos)." },
+        { name: "Livro de Regras", description: "Documento oficial com as regras de liquidação de apostas, na íntegra nos tópicos Regras de Apostas, Regras de Apostas por Esporte e Glossário de Mercados de Apostas acima." },
+      ] },
+    { slug: "responsavel", eyebrow: "Tópico 13", title: "Jogo Responsável", kind: "FAQ",
+      description: "Ferramentas de proteção ao usuário e canais de apoio mantidos pela plataforma.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/jogo-responsavel", label: "Ajuda · Jogo Responsável" },
+      items: [
+        { name: "Quais limites posso configurar?", description: "Limites de depósito, de perdas e de apostas, configuráveis em Minha Conta > Limites Pessoais. A plataforma também exibe um aviso a cada 15 minutos de atividade contínua." },
+        { name: "Como funciona a autoexclusão?", description: "Pode ser feita diretamente na Meridianbet (temporária ou por prazo indeterminado) ou pelo sistema centralizado do Governo Federal (gov.br), que bloqueia simultaneamente todas as casas de apostas licenciadas no Brasil. Todos os detalhes de prazos, processo e desativação de conta estão no tópico seguinte, \"Autoexclusão e Desativação de Conta\"." },
+        { name: "Onde posso buscar ajuda?", description: "Gambling Therapy (gamblingtherapy.org/pt-br), Jogadores Anônimos (jogadoresanonimos.com.br), CVV — ligue 188 (apoio emocional 24h), e CAPS/SUS para tratamento público gratuito." },
+      ] },
+    { slug: "autoexclusao", eyebrow: "Tópico 14", title: "Autoexclusão e Desativação de Conta", kind: "FAQ",
+      description: "Como pausar ou encerrar a conta por conta própria — prazos, processo e o que acontece com o saldo em cada caso.",
+      source: { url: "https://meridianbet.bet.br/ca/ajuda/geral/auto-exclusao-e-desativacao-de-conta", label: "Ajuda · Autoexclusão e Desativação de Conta" },
+      items: [
+        { name: "Quais tipos de autoexclusão existem?", description: "Dois tipos: a autoexclusão temporária, com prazo escolhido pelo próprio usuário entre no mínimo 3 meses e no máximo 5 anos; e a autoexclusão permanente (por prazo indeterminado), para quem prefere não definir uma data de retorno." },
+        { name: "Como solicito a autoexclusão?", description: "O caminho principal é dentro da própria conta, na página \"Limites Pessoais\". O Suporte ao Cliente pode esclarecer dúvidas sobre o processo, mas não pode fazer a solicitação em nome do usuário — só o próprio titular da conta pode ativar a autoexclusão. Também é possível se autoexcluir pelo sistema centralizado do governo federal (gov.br), que vale para todas as casas de apostas licenciadas no Brasil ao mesmo tempo." },
+        { name: "O que fica bloqueado durante a autoexclusão?", description: "Fica bloqueada qualquer nova aposta esportiva e qualquer aposta de cassino, além de qualquer novo depósito. O usuário não recebe mais nenhum material promocional ou anúncio da Meridianbet durante todo o período em que a autoexclusão estiver ativa." },
+        { name: "O que continua funcionando durante a autoexclusão?", description: "O saldo que já estava na conta continua disponível para saque. Apostas feitas antes da autoexclusão começar continuam sendo liquidadas normalmente, e eventuais prêmios ficam disponíveis para saque depois das verificações de praxe." },
+        { name: "Dá para mudar o prazo da autoexclusão depois de ativada?", description: "Sim. Para aumentar o prazo, a mudança vale imediatamente assim que a solicitação é recebida. Para diminuir o prazo, o processamento leva no mínimo 24 horas." },
+        { name: "Qual a diferença entre me autoexcluir pela Meridianbet e pelo gov.br?", description: "A autoexclusão feita direto na Meridianbet processa o pedido internamente. Já a feita pelo sistema centralizado do gov.br não bloqueia a conta de forma imediata — a remoção acontece de acordo com a verificação quinzenal (a cada duas semanas) realizada entre a empresa e o gov.br. Em compensação, o bloqueio pelo gov.br vale ao mesmo tempo em todas as casas de apostas licenciadas no país, não só na Meridianbet." },
+        { name: "O que é a Desativação de Conta e como peço?", description: "É um encerramento voluntário da conta, sem relação direta com controle de jogo (diferente da autoexclusão). Para solicitar, o usuário acessa a conta e clica em \"Meu Perfil\" (no site) ou \"Minha Conta\" (no aplicativo/mobile), onde encontra a opção \"Desativação de Conta\"." },
+        { name: "Quando a desativação de conta pode ser recusada?", description: "A desativação não é concluída enquanto existir: uma liquidação ou apuração pendente; alguma restrição legal ou regulatória sobre a conta; verificação de identidade (KYC) pendente; obrigações de prevenção à lavagem de dinheiro e financiamento do terrorismo (PLD/FTP) em aberto; suspeita de fraude; apostas em aberto; ou qualquer outra obrigação prevista nos Termos e Condições." },
+        { name: "O que acontece com o saldo quando a conta é desativada?", description: "O saldo remanescente e legítimo da carteira é devolvido ao usuário, preferencialmente pelo mesmo método de pagamento usado no último depósito — a menos que a devolução esteja bloqueada por ordem judicial ou por suspeita de fraude." },
+        { name: "Qual a base legal dessas regras?", description: "As regras de autoexclusão, desativação de conta, pausa temporária e limites voluntários seguem a Lei nº 14.790/2023 e a Portaria SPA/MF nº 1.231/2024 (da Secretaria de Prêmios e Apostas do Ministério da Fazenda), implementadas no Capítulo 8 dos Termos e Condições da plataforma." },
+      ] },
+    { slug: "vip", eyebrow: "Tópico 15", title: "Clube VIP", kind: "FAQ",
+      description: "“Descubra um novo nível de experiência no mundo das apostas” — recompensas e vantagens todos os dias, distribuídas em 6 níveis de fidelidade.",
+      source: { url: "https://meridianbet.bet.br/ca/vip", label: "Página do Clube VIP" },
+      items: [
+        { name: "O que é o Clube VIP?", description: "Programa de fidelidade da Meridianbet com 6 níveis progressivos — Entrada, Starter, Bronze, Silver, Gold e Platinum. Quanto maior o nível, maiores as recompensas: cashback diário, rodadas grátis, torneios semanais, ofertas exclusivas semanais, benefícios mensais e atendimento exclusivo. A inscrição é feita pelo botão “Faça parte do clube!” na página do VIP." },
+        { name: "Nível Entrada", description: "Nível de entrada do clube. Perda líquida diária mínima de R$ 10 para gerar recompensa. Recompensa: 10 rodadas grátis (valor de R$ 0,40 cada), creditadas como bônus e sujeitas a rollover de 10x antes do saque." },
+        { name: "Nível Starter", description: "Perda líquida diária mínima de R$ 25. Recompensa: 25 rodadas grátis (R$ 0,40 cada), creditadas como bônus com rollover de 10x antes do saque." },
+        { name: "Nível Bronze", description: "Perda líquida diária mínima de R$ 150. Recompensa: 50 rodadas grátis (R$ 0,40 cada), creditadas como bônus com rollover de 10x antes do saque." },
+        { name: "Nível Silver", description: "Perda líquida diária mínima de R$ 350. Recompensa: 6% de cashback em dinheiro real, sem exigência de rollover — pode ser sacado imediatamente." },
+        { name: "Nível Gold", description: "Perda líquida diária mínima de R$ 350. Recompensa: 8% de cashback em dinheiro real, sem exigência de rollover." },
+        { name: "Nível Platinum", description: "Nível mais alto do clube. Perda líquida diária mínima de R$ 350. Recompensa: 10% de cashback em dinheiro real, sem exigência de rollover — o maior percentual entre todos os níveis." },
+        { name: "Como o cashback diário é calculado?", description: "“Seu resultado diário é calculado como: total apostado em jogos elegíveis menos total de ganhos recebidos, entre 00:00 e 23:59 (horário de Brasília).” Se esse resultado líquido (perda) atingir o mínimo exigido pelo nível do jogador, o cashback correspondente é gerado. Apenas jogos de provedores elegíveis (Expanse, Pragmatic e Fat Panda) contam para o cálculo." },
+        { name: "Quando o cashback cai na conta?", description: "O cashback é creditado automaticamente na manhã seguinte ao dia em que a perda mínima do nível foi atingida — não é preciso solicitar." },
+        { name: "Preciso rollar o cashback antes de sacar?", description: "Depende do nível: nos níveis Silver, Gold e Platinum o cashback é pago em dinheiro real, sem rollover, e pode ser sacado direto. Nos níveis Entrada, Starter e Bronze o cashback vem como bônus de cassino e exige rollover de 10x (apostar 10 vezes o valor do bônus) antes de poder ser sacado." },
+        { name: "Torneios semanais", description: "Benefício listado entre as vantagens do clube: torneios exclusivos que acontecem toda semana, com prêmios para os jogadores do clube VIP." },
+        { name: "Ofertas exclusivas semanais e benefícios mensais", description: "Além do cashback diário, os membros recebem ofertas exclusivas renovadas semanalmente e benefícios adicionais concedidos mensalmente conforme o nível do jogador." },
+        { name: "Atendimento exclusivo", description: "Membros do Clube VIP contam com um canal de suporte exclusivo, com atendimento diferenciado em relação ao suporte padrão da plataforma." },
+        { name: "Quem não pode participar do Clube VIP?", description: "O programa não se aplica a contas autoexcluídas, suspensas ou impedidas de apostar. Contas nessas condições não recebem cashback nem demais benefícios do clube, mesmo que atinjam os valores mínimos de perda." },
+      ] },
+  ];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function fmt(n){ return Number(n || 0).toLocaleString("pt-BR"); }
+
+  // Remove acentos para a busca ser tolerante ("saque" encontra "Saque", "as" em "às" etc.).
+  function normalize(s){
+    return String(s == null ? "" : s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  }
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+
+  // Escapa o texto e, se houver termo de busca, envolve as ocorrências em <mark>.
+  function highlight(text, rawQuery){
+    var escaped = esc(text);
+    if (!rawQuery) return escaped;
+    var q = escapeRegExp(esc(rawQuery));
+    if (!q) return escaped;
+    try {
+      return escaped.replace(new RegExp("(" + q + ")", "ig"), "<mark>$1</mark>");
+    } catch (e) {
+      return escaped;
+    }
+  }
+
+  function renderSidenav(topics){
+    var nav = document.getElementById("sidenav");
+    nav.innerHTML = '<span class="sidenav-label">Tópicos</span>' + topics.map(function(t){
+      return '<a href="#' + esc(t.slug) + '">' + esc(t.title) + '</a>';
+    }).join("");
+  }
+
+  // Todo item da intranet — esporte, competição, recurso, política — usa o
+  // mesmo componente: um cabeçalho sempre visível (nome + selo opcional de
+  // contagem/tag) e uma explicação que só aparece ao clicar.
+  var faqUid = 0;
+  function renderAccordionItem(item, query){
+    faqUid += 1;
+    var id = "faq-" + faqUid;
+    var badge = "";
+    if (item.tag) {
+      var isLiveTag = item.tag.toLowerCase().indexOf("vivo") !== -1;
+      badge = '<span class="item-badge ' + (isLiveTag ? "item-badge-live" : "item-badge-tag") + '">' + esc(item.tag) + '</span>';
+    }
+    return (
+      '<div class="faq-item" data-faq-name="' + esc(normalize(item.name)) + '">' +
+        '<button type="button" class="faq-question" aria-expanded="false" aria-controls="' + id + '">' +
+          '<span class="faq-question-text">' + highlight(item.name, query) + '</span>' +
+          '<span class="faq-question-right">' + badge +
+            '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          '</span>' +
+        '</button>' +
+        '<div class="faq-answer" id="' + id + '">' +
+          '<div class="faq-answer-inner">' + highlight(item.description || "Sem descrição cadastrada ainda.", query) + '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderTopicBody(topic, query){
+    return '<div class="faq-list">' + topic.items.map(function(item){ return renderAccordionItem(item, query); }).join("") + '</div>';
+  }
+
+  function renderSectionSource(topic){
+    if (!topic.source || !topic.source.url) return "";
+    return '<span class="section-source">Fonte: <a href="' + esc(topic.source.url) + '" target="_blank" rel="noopener">' + esc(topic.source.label || topic.source.url) + '</a></span>';
+  }
+
+  function renderContent(topics, query){
+    var main = document.getElementById("content");
+    if (!topics.length) {
+      main.innerHTML = '<p class="empty-hint">' + (query ? "Nenhum assunto encontrado para “" + esc(query) + "”. Tente outro termo." : "Nenhum tópico cadastrado ainda.") + '</p>';
+      return;
+    }
+    main.innerHTML = topics.map(function(topic){
+      return '<section id="' + esc(topic.slug) + '">' +
+        '<div class="section-head">' +
+          '<h2 class="section-title">' + highlight(topic.title, query) + '</h2>' +
+          '<p class="section-desc">' + highlight(topic.description, query) + '</p>' +
+          renderSectionSource(topic) +
+        '</div>' +
+        renderTopicBody(topic, query) +
+      '</section>';
+    }).join("");
+    setupFaqToggles();
+    if (query) openAllVisible();
+  }
+
+  function setupFaqToggles(){
+    var buttons = document.querySelectorAll(".faq-question");
+    buttons.forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var item = btn.closest(".faq-item");
+        var answer = item.querySelector(".faq-answer");
+        var isOpen = item.classList.contains("open");
+        if (isOpen) {
+          answer.style.maxHeight = "0px";
+          item.classList.remove("open");
+          btn.setAttribute("aria-expanded", "false");
+        } else {
+          item.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      });
+    });
+  }
+
+  // Ao pesquisar, abre automaticamente os itens que sobraram no filtro —
+  // assim o usuário já vê a resposta sem precisar clicar de novo.
+  function openAllVisible(){
+    var items = document.querySelectorAll("#content .faq-item");
+    items.forEach(function(item){
+      var btn = item.querySelector(".faq-question");
+      var answer = item.querySelector(".faq-answer");
+      item.classList.add("open");
+      btn.setAttribute("aria-expanded", "true");
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    });
+  }
+
+  function itemMatches(item, q){
+    return normalize(item.name).indexOf(q) !== -1 || normalize(item.description || "").indexOf(q) !== -1;
+  }
+  function topicMatches(topic, q){
+    return normalize(topic.title).indexOf(q) !== -1 || normalize(topic.description || "").indexOf(q) !== -1 ||
+      normalize(topic.eyebrow || "").indexOf(q) !== -1;
+  }
+  // Filtra os tópicos por um termo (sem acentos, sem diferenciar maiúsculas).
+  // Se o próprio tópico bate (ex.: título "Pagamentos"), mantém todos os
+  // itens dele à vista; senão, mostra só os itens que batem individualmente.
+  function filterTopics(topics, rawQuery){
+    var q = normalize(rawQuery || "").trim();
+    if (!q) return { topics: topics, matchCount: null };
+    var matchCount = 0;
+    var filtered = topics.map(function(topic){
+      var matchedItems = topic.items.filter(function(item){ return itemMatches(item, q); });
+      matchCount += matchedItems.length;
+      var items = matchedItems.length ? matchedItems : (topicMatches(topic, q) ? topic.items : []);
+      if (!items.length) return null;
+      var copy = {};
+      for (var k in topic) { if (Object.prototype.hasOwnProperty.call(topic, k)) copy[k] = topic[k]; }
+      copy.items = items;
+      return copy;
+    }).filter(Boolean);
+    return { topics: filtered, matchCount: matchCount };
+  }
+
+  function updateSearchCount(query, result){
+    var el = document.getElementById("searchCount");
+    if (!query) { el.hidden = true; el.textContent = ""; return; }
+    el.hidden = false;
+    var n = result.matchCount;
+    el.textContent = n === 1 ? "1 resultado encontrado" : n + " resultados encontrados";
+  }
+
+  function setupScrollSpy(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sidenav a'));
+    var sections = links.map(function(l){ return document.querySelector(l.getAttribute('href')); }).filter(Boolean);
+    if (!('IntersectionObserver' in window) || !sections.length) return;
+    var byId = {};
+    links.forEach(function(l){ byId[l.getAttribute('href').slice(1)] = l; });
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var link = byId[entry.target.id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(function(l){ l.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+
+  // Estado atual da página: os dados carregados (estático ou da API) mais o
+  // termo de busca ativo, se houver. Toda mudança passa por renderAll().
+  var state = { topics: FALLBACK_TOPICS, scoreboard: null, sourceState: "static", query: "" };
+
+  function render(topics, scoreboard, sourceState){
+    state.topics = topics;
+    state.scoreboard = scoreboard;
+    state.sourceState = sourceState;
+    renderAll();
+  }
+
+  function renderAll(){
+    var query = state.query.trim();
+    var result = filterTopics(state.topics, query);
+    renderSidenav(result.topics);
+    renderContent(result.topics, query);
+    setupScrollSpy();
+    updateSourceBadge(state.sourceState);
+    updateSearchCount(query, result);
+  }
+
+  // ---------------------------------------------------------------------
+  // Fonte de dados: por padrão usa FALLBACK_TOPICS (instantâneo estático).
+  // Se uma API do backend estiver configurada (ver painel no rodapé),
+  // busca /api/topics e /api/scoreboard e usa os dados ao vivo; se a busca
+  // falhar por qualquer motivo, volta silenciosamente para o estático.
+  // ---------------------------------------------------------------------
+  function getApiBase(){
+    try { return (localStorage.getItem("meridianbet_intranet_api_base") || "").trim(); }
+    catch (e) { return ""; }
+  }
+  function setApiBase(v){
+    try {
+      if (v) localStorage.setItem("meridianbet_intranet_api_base", v);
+      else localStorage.removeItem("meridianbet_intranet_api_base");
+    } catch (e) { /* localStorage indisponível: segue só nesta visita */ }
+  }
+
+  function updateSourceBadge(state){
+    var dot = document.getElementById("sourceDot");
+    var label = document.getElementById("sourceLabel");
+    dot.className = "source-dot" + (state === "live" ? " live" : state === "error" ? " error" : "");
+    if (state === "live") label.textContent = "API ao vivo conectada";
+    else if (state === "error") label.textContent = "API configurada não respondeu · usando estático";
+    else label.textContent = "dados estáticos · 11 set 2026";
+  }
+
+  function loadFromApi(apiBase){
+    var base = apiBase.replace(/\/$/, "");
+    return Promise.all([
+      fetch(base + "/api/topics").then(function(r){ if (!r.ok) throw new Error("topics " + r.status); return r.json(); }),
+      fetch(base + "/api/scoreboard").then(function(r){ if (!r.ok) throw new Error("scoreboard " + r.status); return r.json(); }).catch(function(){ return null; }),
+    ]).then(function(results){
+      return { topics: results[0].topics, scoreboard: results[1] };
+    });
+  }
+
+  function boot(){
+    var apiBase = getApiBase();
+    document.getElementById("apiBaseInput").value = apiBase;
+
+    if (!apiBase) {
+      render(FALLBACK_TOPICS, null, "static");
+      return;
+    }
+
+    render(FALLBACK_TOPICS, null, "static"); // mostra algo imediatamente
+    loadFromApi(apiBase).then(function(data){
+      if (data.topics && data.topics.length) {
+        render(data.topics, data.scoreboard, "live");
+      } else {
+        render(FALLBACK_TOPICS, null, "error");
+      }
+    }).catch(function(){
+      render(FALLBACK_TOPICS, null, "error");
+    });
+  }
+
+  document.getElementById("sourceToggle").addEventListener("click", function(){
+    document.getElementById("sourcePanel").classList.toggle("open");
+  });
+  document.getElementById("apiBaseSave").addEventListener("click", function(){
+    var v = document.getElementById("apiBaseInput").value.trim();
+    setApiBase(v);
+    boot();
+  });
+  document.getElementById("apiBaseClear").addEventListener("click", function(){
+    setApiBase("");
+    document.getElementById("apiBaseInput").value = "";
+    boot();
+  });
+
+  var searchInput = document.getElementById("searchInput");
+  var searchClear = document.getElementById("searchClear");
+  searchInput.addEventListener("input", function(){
+    state.query = searchInput.value;
+    searchClear.hidden = !state.query;
+    renderAll();
+  });
+  searchClear.addEventListener("click", function(){
+    state.query = "";
+    searchInput.value = "";
+    searchClear.hidden = true;
+    renderAll();
+    searchInput.focus();
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && document.activeElement === searchInput && state.query) {
+      searchClear.click();
+    }
+  });
+
+  boot();
+</script>
